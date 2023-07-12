@@ -1,0 +1,25 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luis Miguel Mesa Garcia",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.20.2",
+    "connect-multiparty": "^2.2.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "jwt-simple": "^0.5.6",
+    "moment": "^2.29.4",
+    "mongoose": "^7.3.2"
+  }
+}
