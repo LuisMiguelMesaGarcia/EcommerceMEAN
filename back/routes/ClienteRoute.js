@@ -12,6 +12,7 @@ var api = express.Router();
 //ruta del post en la cual tiene la parte del url y el metodo al cual esta llamando
 api.post('/registroCliente',clienteController.registroCliente);
 api.post('/loginCliente',clienteController.loginCliente);
+api.get('/listar_clientes_filtro_admin',clienteController.listar_clientes_filtro_admin);
 
 
 //exportamos el router

@@ -59,7 +59,14 @@ const loginCliente = async function(req,res){
 
 }
 
+const listar_clientes_filtro_admin = async function(req,res){
+    let reg = await cliente.find();
+    res.status(200).send({data:reg})
+}
+
+
 module.exports = {
     registroCliente,
-    loginCliente
+    loginCliente,
+    listar_clientes_filtro_admin
 }
