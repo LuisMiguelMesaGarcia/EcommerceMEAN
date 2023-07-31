@@ -33,7 +33,7 @@ app.use((req,res,next)=>{
     next();
 });
 
-app.use('/api', cliente_route);//middleware (creo)
+app.use('/api', cliente_route);//cliente
 app.use('/api', admin_route);//Admin
 
 module.exports = app;

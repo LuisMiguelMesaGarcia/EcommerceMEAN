@@ -13,6 +13,7 @@ const registroCliente = async function(req,res){
     if(clientes_arr.length == 0){        
         //REGISTRO
         if(data.password){
+            //encriptado de contraseña
             bcrypt.hash(data.password,null,null, async function(err,hash){
                 if(hash){
                     data.password=hash

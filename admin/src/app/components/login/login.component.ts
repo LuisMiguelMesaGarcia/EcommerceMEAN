@@ -12,19 +12,16 @@ declare var iziToast:any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  public user : any = {
-    email:'',
-    password:''
-  };
-  public usuario: any={};
+  public user : any = {};
+  public usuario: any={};//se guarda el usuario logeado
   public token: any = '';
 
   constructor(private _adminService:AdminService, private router:Router){
-    this.token = this._adminService.getToken();
+    this.token = this._adminService.getToken();//trae el token el localhost
   }
 
   ngOnInit():void{
-    console.log(this.token)
+    //si hay token redireccionamos al inicio
     if(this.token){
       this.router.navigate(['/']);
     }
@@ -32,6 +29,7 @@ export class LoginComponent {
 
   login(loginForm:any){
     if(loginForm.valid){
+      //el user se llena en el frontEnd en el ngModel de la etiqueta input
       this._adminService.loginAdmin(this.user).subscribe(
         response => {
           if(response.data==undefined){
