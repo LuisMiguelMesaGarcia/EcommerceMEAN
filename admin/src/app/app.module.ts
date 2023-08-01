@@ -9,6 +9,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
+// import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ClienteComponent } from './components/cliente/cliente.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule
+    // NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,19 +7,47 @@ import { ClienteService } from 'src/app/services/cliente.service';
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent {
-  constructor(private _clienteService:ClienteService){
 
-  }
+  public clientes: Array<any> = []; //todos los clientes
+  public filtro_apellido = '';// con el ngModule le damos valor a estos filtros en el html
+  public filtro_correo = '';
+
+
+
+  constructor(private _clienteService:ClienteService){}
 
   ngOnInit():void{
-    this._clienteService.loginlistar_clientes_filtro_adminAdmin().subscribe(
+    this.init_Data(null,null)
+  }
+
+  init_Data(tipo:any, filtro:any){
+    //GET
+    this._clienteService.listar_clientes_filtro_adminAdmin(tipo, filtro).subscribe(
       response=>{
-        console.log(response)
+        this.clientes = response.data
       },
       error=>{
         console.log(error)
       }
     )
+  }
+
+  filtro(tipo:any){
+    if(tipo == 'apellido'){
+      if(this.filtro_apellido){
+        this.init_Data(tipo,this.filtro_apellido)
+      }else{
+        this.init_Data(null,null)
+      }
+      
+    }else if(tipo == 'correo'){
+      if(this.filtro_correo){
+        this.init_Data(tipo,this.filtro_correo)
+      }else{
+        this.init_Data(null,null)
+      }
+    }
+
   }
 
 

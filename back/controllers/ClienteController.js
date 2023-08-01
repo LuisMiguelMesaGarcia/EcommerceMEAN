@@ -3,6 +3,7 @@
 var bcrypt = require('bcrypt-nodejs');//importamos bcrypt el cual se usa para encriptar la contraseña
 var cliente = require('../models/Cliente');//importamos cliente
 var jwt = require('../helpers/jwt');
+const Cliente = require('../models/Cliente');
 
 //registro cliente
 const registroCliente = async function(req,res){
@@ -60,9 +61,32 @@ const loginCliente = async function(req,res){
 
 }
 
+//GET all y filtro
 const listar_clientes_filtro_admin = async function(req,res){
-    let reg = await cliente.find();
-    res.status(200).send({data:reg})
+    let tipo = req.params['tipo'];//estos datos llegan por la url
+    let filtro = req.params['filtro'];
+
+    //los null llegan como string del url los pasamos a null
+    tipo = tipo === 'null' ? null : tipo; //Operador condicional (ternario)
+    filtro = filtro === 'null' ? null : filtro;
+
+
+    if(tipo==null){
+        //lista todo
+        let reg = await cliente.find();
+        res.status(200).send({data:reg})
+    }else{
+        //filtro
+        if(tipo == 'apellido'){
+            //haces un find con filtro
+            let reg = await Cliente.find({apellido: new RegExp(filtro,'i')})
+            res.status(200).send({data:reg})
+        }else if(tipo == 'correo'){
+            let reg = await Cliente.find({email: new RegExp(filtro,'i')})
+            res.status(200).send({data:reg})
+        }
+    }
+    
 }
 
 

@@ -14,8 +14,9 @@ export class ClienteService {
     this.url=GLOBAL.url;
   }
 
-  loginlistar_clientes_filtro_adminAdmin():Observable<any>{
-    return  this.http.get(this.url+'listar_clientes_filtro_admin');
+  listar_clientes_filtro_adminAdmin(tipo:any,filtro:any):Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return  this.http.get(this.url+'listar_clientes_filtro_admin/'+ tipo +'/'+filtro , {headers: headers});
   }
 
 

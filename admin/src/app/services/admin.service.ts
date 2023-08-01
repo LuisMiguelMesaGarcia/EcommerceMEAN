@@ -19,10 +19,12 @@ export class AdminService {
     return  this.http.post(this.url+'loginAdmin',data);
   }
 
+  //obtener token del localstorage
   getToken(){
     return localStorage.getItem('token');
   }
 
+  //autenticador del guard
   public isAuthenticate(allowedRoles: string[]):boolean{
     const token:any = localStorage.getItem('token');
 
@@ -32,13 +34,14 @@ export class AdminService {
     }
 
     const helper = new JwtHelperService();
-    var decodedToken = helper.decodeToken(token);
+    var decodedToken = helper.decodeToken(token);//decod exitosa, true,  token falso, false
 
     if(!decodedToken){
       console.log('no valido');
       localStorage.removeItem('token')
       return false;
     }
+    //si incluye la key rol da verdadero
     return allowedRoles.includes(decodedToken['rol']);
   }
 
