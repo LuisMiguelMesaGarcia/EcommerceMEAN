@@ -9,7 +9,9 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
-// import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgxPaginationModule} from 'ngx-pagination';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { ClienteComponent } from './components/cliente/cliente.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
-    // NgbPaginationModule
+    HttpClientModule,
+    NgxPaginationModule
+    // NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

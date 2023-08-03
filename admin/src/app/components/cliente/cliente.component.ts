@@ -11,6 +11,10 @@ export class ClienteComponent {
   public clientes: Array<any> = []; //todos los clientes
   public filtro_apellido = '';// con el ngModule le damos valor a estos filtros en el html
   public filtro_correo = '';
+  public page!:number;
+
+  // public page = 1;
+  // public pageSize = 1;
 
 
 
