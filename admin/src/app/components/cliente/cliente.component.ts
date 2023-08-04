@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-cliente',
@@ -12,13 +13,16 @@ export class ClienteComponent {
   public filtro_apellido = '';// con el ngModule le damos valor a estos filtros en el html
   public filtro_correo = '';
   public page!:number;
+  public token:any;
 
   // public page = 1;
   // public pageSize = 1;
 
 
 
-  constructor(private _clienteService:ClienteService){}
+  constructor(private _clienteService:ClienteService, private _adminService:AdminService){
+    this.token=_adminService.getToken();
+  }
 
   ngOnInit():void{
     this.init_Data(null,null)
@@ -26,7 +30,7 @@ export class ClienteComponent {
 
   init_Data(tipo:any, filtro:any){
     //GET
-    this._clienteService.listar_clientes_filtro_adminAdmin(tipo, filtro).subscribe(
+    this._clienteService.listar_clientes_filtro_adminAdmin(tipo, filtro, this.token).subscribe(
       response=>{
         this.clientes = response.data
       },

@@ -2,8 +2,9 @@
 
 var bcrypt =  require('bcrypt-nodejs');
 var admin = require('../models/Admin');
-var jwt = require('../helpers/jwt')
+var jwt = require('../helpers/jwt');
 
+//POST registro
 const registroAdmin = async function(req,res){
     var data=req.body;
     var admin_arr=[];
@@ -29,6 +30,7 @@ const registroAdmin = async function(req,res){
     }
 }
 
+//POST Login
 const loginAdmin = async function(req,res){
     var data= req.body;
     var admin_arr = [];
