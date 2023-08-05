@@ -7,7 +7,7 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 
 
 const routes: Routes = [
-  {path:"", component: InicioComponent, canActivate: [AdminGuard]},
+  {path:'', component: InicioComponent, canActivate: [AdminGuard]},
   {path:"panel", children:[
     {path:'clientes', component: ClienteComponent, canActivate:[AdminGuard]}
   ]},
