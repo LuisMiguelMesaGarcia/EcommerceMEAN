@@ -40,7 +40,7 @@
                             </tr>
                           </thead>
                           <!-- el clientes viene el ts -->
-                          <tbody *ngFor="let item of clientes | paginate:{itemsPerPage: 5, currentPage: page}; let indice=index" >
+                          <tbody *ngFor="let item of clientes | paginate:{itemsPerPage: 10, currentPage: page}; let indice=index" >
                             <tr>
                               <td>{{indice+1}}</td>
                               <td>{{item.nombre}}</td>
