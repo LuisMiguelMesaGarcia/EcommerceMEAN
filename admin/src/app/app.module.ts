@@ -10,6 +10,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { CreateClienteComponent } from './components/cliente/create-cliente/create-cliente.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -19,7 +20,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     InicioComponent,
     SidebarComponent,
     LoginComponent,
-    ClienteComponent
+    ClienteComponent,
+    CreateClienteComponent
   ],
   imports: [
     BrowserModule,

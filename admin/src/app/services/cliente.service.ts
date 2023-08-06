@@ -18,6 +18,11 @@ export class ClienteService {
     let headers = new HttpHeaders({'Authorization' : token}) //este authorization se accede en minusculas en el backend
     return  this.http.get(this.url+'listar_clientes_filtro_admin/'+ tipo +'/'+filtro , {headers: headers});
   }
+  
+  registroClienteAdmin(data:any,token:string):Observable<any>{
+    let headers = new HttpHeaders({'Authorization' : token}) //este authorization se accede en minusculas en el backend
+    return  this.http.post(this.url+'registroClienteAdmin',data,{headers: headers});
+  }
 
 
 

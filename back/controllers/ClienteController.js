@@ -97,9 +97,55 @@ const listar_clientes_filtro_admin = async function(req,res){
     
 }
 
+//POST Registro Cliente Admin
+const registroClienteAdmin = async function(req,res){
+    if(req.user){
+        if(req.user.rol == 'admin'){
+            var data=req.body; //tomamos las data de la peticion
+            var clientes_arr=[];
+
+            clientes_arr = await cliente.find({email:data.email})
+            if(clientes_arr.length == 0){        
+                //REGISTRO
+                //encriptado de contraseña
+                bcrypt.hash("123456789",null,null, async function(err,hash){
+                    if(hash){
+                        data.password=hash
+                        var reg= await cliente.create(data);//en esta linea se hace el registro, el resto son validaciones
+                        res.status(200).send({data:reg})
+                    }else{
+                        res.status(200).send({message:'ErrorServer', data: undefined})
+                    }
+                })
+            }else{
+                res.status(200).send({message:'El correo ya existe en la base de datos', data: undefined})
+            }
+        }//iff admin
+    }//if cabezera
+    
+
+    // if(req.user){
+    //     if(req.user.rol == 'admin'){
+    //         var data = req.body;
+    //         bcrypt.hash("123456789",null,null, async function(err,hash){
+    //             if(hash){
+    //                 data.password=hash
+    //                 console.log(data)
+    //                 let reg = await Cliente.create(data)
+    //                 res.status(200).send({data:reg})
+    //             }else{
+    //                 console.log(err)
+    //                 res.status(200).send({message:'ErrorServer', reg: undefined})
+    //             }
+    //         })
+            
+    //     }
+    // }
+}//funcion
 
 module.exports = {
     registroCliente,
     loginCliente,
-    listar_clientes_filtro_admin
+    listar_clientes_filtro_admin,
+    registroClienteAdmin
 }

@@ -12,6 +12,7 @@ const auth = require('../middlewares/authenticate')
 //ruta del post en la cual tiene la parte del url y el metodo al cual esta llamando
 api.post('/registroCliente',clienteController.registroCliente);
 api.post('/loginCliente',clienteController.loginCliente);
+api.post('/registroClienteAdmin',auth.auth,clienteController.registroClienteAdmin);
 api.get('/listar_clientes_filtro_admin/:tipo/:filtro',auth.auth,clienteController.listar_clientes_filtro_admin);
 
 
