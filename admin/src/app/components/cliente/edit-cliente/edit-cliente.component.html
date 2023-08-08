@@ -12,59 +12,78 @@
                     <div class="card-header">
                         <h5 style="margin-bottom: 0px;">Actualizar Cliente</h5>
                     </div>
-                    <div class="card-body" *ngIf="cliente != undefined">
-                        
-                        <div class="row">
-                            <div class="col-md-4 form-group">
-                                <label for="validationCustom01" class="form-label">Nombres</label>
-                                <input class="form-control" type="text" placeholder="Nombres completos"  required name="nombre" [(ngModel)]="cliente.nombre">
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label for="validationCustom01" class="form-label">Apellidos</label>
-                                <input class="form-control" type="text" placeholder="Apellidoss Completos"  required name="apellido" [(ngModel)]="cliente.apellido">
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label for="validationCustom01" class="form-label">Correo electrónico</label>
-                                <input class="form-control" type="text" placeholder="Correo electrónico"  required name="email" [(ngModel)]="cliente.email">
-                            </div>
 
-                            <div class="col-md-4 form-group">
-                                <label for="validationCustom01" class="form-label">Telefono</label>
-                                <input class="form-control" type="text" placeholder="Telefono"  required name="telefono" [(ngModel)]="cliente.telefono">
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label for="validationCustom01" class="form-label">Fecha nacimiento</label>
-                                <input class="form-control" type="date" placeholder=""  required name="f_nacimiento" [(ngModel)]="cliente.f_nacimiento">
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label for="validationCustom01" class="form-label">DNI</label>
-                                <input class="form-control" type="number" placeholder="Documento de identidad"  required name="dni" [(ngModel)]="cliente.dni">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="validationCustom01" class="form-label">Genero</label>
-                                <select class="form-control custom-select" required name="genero" [(ngModel)]="cliente.genero">
-                                    <option value="" disabled selected>seleccionar</option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Femenino">Femenino</option>
-                                </select>
+                    <ng-container *ngIf="load_data">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <!-- spinner -->
+                                    <div class="spinner-border" style="width:3rem; height:3rem;" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                      </div>
+                                </div>
                             </div>
                         </div>
-                        
-                    </div>
+                    </ng-container>
 
-                    <!-- validacion de encontrar el registro -->
-                    <div class="card-body" *ngIf="cliente == undefined">
-                        <h3 class="text-center">No se encontró el registro</h3>
-                        <div class="row ">
-                            <div class="col-3 mx-auto">
-                                <img src="assets/img/error.png" alt="" style="width:100%;">
-                            </div>
-                        </div>
+                    <ng-container *ngIf="!load_data">
+                        <div class="card-body" *ngIf="cliente != undefined">
                         
-                    </div>
+                            <div class="row">
+                                <div class="col-md-4 form-group">
+                                    <label for="validationCustom01" class="form-label">Nombres</label>
+                                    <input class="form-control" type="text" placeholder="Nombres completos"  required name="nombre" [(ngModel)]="cliente.nombre">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="validationCustom01" class="form-label">Apellidos</label>
+                                    <input class="form-control" type="text" placeholder="Apellidoss Completos"  required name="apellido" [(ngModel)]="cliente.apellido">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="validationCustom01" class="form-label">Correo electrónico</label>
+                                    <input class="form-control" type="text" placeholder="Correo electrónico"  required name="email" [(ngModel)]="cliente.email">
+                                </div>
+    
+                                <div class="col-md-4 form-group">
+                                    <label for="validationCustom01" class="form-label">Telefono</label>
+                                    <input class="form-control" type="text" placeholder="Telefono"  required name="telefono" [(ngModel)]="cliente.telefono">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="validationCustom01" class="form-label">Fecha nacimiento</label>
+                                    <input class="form-control" type="date" placeholder=""  required name="f_nacimiento" [(ngModel)]="cliente.f_nacimiento">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="validationCustom01" class="form-label">DNI</label>
+                                    <input class="form-control" type="number" placeholder="Documento de identidad"  required name="dni" [(ngModel)]="cliente.dni">
+                                </div>
+    
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">Genero</label>
+                                    <select class="form-control custom-select" required name="genero" [(ngModel)]="cliente.genero">
+                                        <option value="" disabled selected>seleccionar</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+    
+                        <!-- validacion de encontrar el registro -->
+                        <div class="card-body" *ngIf="cliente == undefined">
+                            <h3 class="text-center">No se encontró el registro</h3>
+                            <div class="row ">
+                                <div class="col-3 mx-auto">
+                                    <img src="assets/img/error.png" alt="" style="width:100%;">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </ng-container>
+                    
+
                     <div class="card-footer">
-                        <button class="btn btn-primary mr-3" type="submit">Actualizar Cliente</button>
+                        <button *ngIf="!load_btn" class="btn btn-primary mr-3" type="submit">Actualizar Cliente</button>
+                        <button *ngIf="load_btn" class="btn btn-secondary mr-3" type="submit" disabled><span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>Actualizando...</button>
                         <a [routerLink]="['/panel/clientes']" class="btn btn-warning">Regresar</a>
                     </div>
             </div>

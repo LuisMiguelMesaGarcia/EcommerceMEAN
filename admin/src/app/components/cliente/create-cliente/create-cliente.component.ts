@@ -14,6 +14,7 @@ export class CreateClienteComponent {
     genero : ''
   }; //este objeto se llena en el HTML con el ngModule
   public token:any;
+  public load_btn:boolean=false;//precargador
 
   constructor(private _clienteService:ClienteService, private _adminService: AdminService,private _router: Router){
     this.token=_adminService.getToken();
@@ -27,6 +28,7 @@ export class CreateClienteComponent {
   //el registroForm se crea en el HTML
   resgistro(registroForm:any){
     if(registroForm.valid){
+      this.load_btn=true;
       this._clienteService.registroClienteAdmin(this.cliente,this.token).subscribe(
         response=>{
           iziToast.show({
@@ -43,6 +45,7 @@ export class CreateClienteComponent {
             telefono:'',
             email:'',
           }
+          this.load_btn=false;
           this._router.navigate(['/panel/clientes'])
         },error=>{
           console.log(error);

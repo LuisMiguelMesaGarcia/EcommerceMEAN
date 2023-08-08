@@ -15,9 +15,9 @@ export class ClienteComponent {
   public clientes: Array<any> = []; //todos los clientes
   public filtro_apellido = '';// con el ngModule le damos valor a estos filtros en el html
   public filtro_correo = '';
-  public page!:number;
+  public page!:number;//para el paginadore
   public token:any;
-
+  public load_data:boolean=true;//precargador
   // public page = 1;
   // public pageSize = 1;
 
@@ -34,9 +34,11 @@ export class ClienteComponent {
 
   init_Data(tipo:any, filtro:any){
     //GET
+    this.load_data=true;
     this._clienteService.listar_clientes_filtro_adminAdmin(tipo, filtro, this.token).subscribe(
       response=>{
         this.clientes = response.data
+        this.load_data=false;//se pone en falso para que muestre el listado, si no, muestra el spinner
       },
       error=>{
         console.log(error)
