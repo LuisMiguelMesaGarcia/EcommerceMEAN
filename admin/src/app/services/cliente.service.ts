@@ -23,7 +23,21 @@ export class ClienteService {
     let headers = new HttpHeaders({'Authorization' : token}) //este authorization se accede en minusculas en el backend
     return  this.http.post(this.url+'registroClienteAdmin',data,{headers: headers});
   }
+  
+  obtener_cliente_admin(id:string,token:string):Observable<any>{
+    let headers = new HttpHeaders({'Authorization' : token}) //este authorization se accede en minusculas en el backend
+    return  this.http.get(this.url+'/obtener_cliente_admin/'+id,{headers: headers});
+  }
+  actualizar_cliente_admin(id:string,data:any,token:string):Observable<any>{
+    let headers = new HttpHeaders({'Authorization' : token}) //este authorization se accede en minusculas en el backend
+    return  this.http.put(this.url+'/actualizar_cliente_admin/'+id,data,{headers: headers});
+  }
+  eliminar_cliente_admin(id:string,token:string):Observable<any>{
+    let headers = new HttpHeaders({'Authorization' : token}) //este authorization se accede en minusculas en el backend
+    return  this.http.delete(this.url+'/eliminar_cliente_admin/'+id,{headers: headers});
+  }
 
+  
 
 
 }

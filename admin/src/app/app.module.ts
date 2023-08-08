@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CreateClienteComponent } from './components/cliente/create-cliente/create-cliente.component';
+import { EditClienteComponent } from './components/cliente/edit-cliente/edit-cliente.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -21,7 +22,8 @@ import { CreateClienteComponent } from './components/cliente/create-cliente/crea
     SidebarComponent,
     LoginComponent,
     ClienteComponent,
-    CreateClienteComponent
+    CreateClienteComponent,
+    EditClienteComponent
   ],
   imports: [
     BrowserModule,

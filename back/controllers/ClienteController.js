@@ -3,7 +3,7 @@
 var bcrypt = require('bcrypt-nodejs');//importamos bcrypt el cual se usa para encriptar la contraseña
 var cliente = require('../models/Cliente');//importamos cliente
 var jwt = require('../helpers/jwt');
-const Cliente = require('../models/Cliente');
+
 
 //registro cliente
 const registroCliente = async function(req,res){
@@ -81,10 +81,10 @@ const listar_clientes_filtro_admin = async function(req,res){
                 //filtro
                 if(tipo == 'apellido'){
                     //haces un find con filtro
-                    let reg = await Cliente.find({apellido: new RegExp(filtro,'i')})
+                    let reg = await cliente.find({apellido: new RegExp(filtro,'i')})
                     res.status(200).send({data:reg})
                 }else if(tipo == 'correo'){
-                    let reg = await Cliente.find({email: new RegExp(filtro,'i')})
+                    let reg = await cliente.find({email: new RegExp(filtro,'i')})
                     res.status(200).send({data:reg})
                 }
             }
@@ -143,9 +143,83 @@ const registroClienteAdmin = async function(req,res){
     // }
 }//funcion
 
+//GET cliente by id
+const obtener_cliente_admin=async function(req,res){
+    if(req.user){ //auth
+        if(req.user.rol == 'admin'){ //solo da permiso a Admin
+
+            var id=req.params['id'];
+
+            try {
+                //validacion de que existe el registro el trycatch
+                var reg = await cliente.findById({_id:id});//esto encuentra con formato de objeto
+            
+                res.status(200).send({data:reg});
+            } catch (error) {
+                console.log(error)
+                res.status(200).send({data:undefined})
+            }
+
+        }else{
+            res.status(500).send({message:'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message:'NoAccess'})
+    }
+}
+
+//PUT Actualizar cliente admin
+const actualizar_cliente_admin = async function(req,res){
+    if(req.user){ //auth
+        if(req.user.rol == 'admin'){ //solo da permiso a Admin
+
+            var id=req.params['id'];
+            var data = req.body;
+
+            //pasamos el objeto que se va a actualizar en data=req.body vienen los datos del formulario
+            var reg = await cliente.findByIdAndUpdate({_id:id}, {
+                nombre: data.nombre,
+                apellido: data.apellido,
+                email: data.email ,
+                telefono: data.telefono ,
+                genero: data.genero ,
+                f_nacimiento: data.f_nacimiento ,
+                dni: data.dni   
+            })
+            res.status(200).send({data:reg})
+
+        }else{
+            res.status(500).send({message:'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message:'NoAccess'})
+    }
+}
+
+//DELETE Eliminar cliente admin
+const eliminar_cliente_admin = async function(req,res){
+    if(req.user){ //auth
+        if(req.user.rol == 'admin'){ //solo da permiso a Admin
+
+            var id=req.params['id'];
+
+            let reg = await cliente.findByIdAndRemove(id);
+            res.status(200).send({data:reg});
+            
+        }else{
+            res.status(500).send({message:'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message:'NoAccess'})
+    }
+}
+
 module.exports = {
     registroCliente,
     loginCliente,
     listar_clientes_filtro_admin,
-    registroClienteAdmin
+    registroClienteAdmin,
+    obtener_cliente_admin,
+    actualizar_cliente_admin,
+    eliminar_cliente_admin
 }

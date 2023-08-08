@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { AdminService } from 'src/app/services/admin.service';
+declare var iziToast:any;
+declare var JQuery:any;
+declare var $:any;
 
 @Component({
   selector: 'app-cliente',
@@ -26,6 +29,7 @@ export class ClienteComponent {
 
   ngOnInit():void{
     this.init_Data(null,null)
+
   }
 
   init_Data(tipo:any, filtro:any){
@@ -56,6 +60,26 @@ export class ClienteComponent {
       }
     }
 
+  }
+
+  eliminar(id:string){
+    this._clienteService.eliminar_cliente_admin(id,this.token).subscribe(
+      response=>{
+        iziToast.show({
+          title: 'Success',
+          position:'topRight',
+          message: 'Se eliminó correctamente el cliente',
+          titleColor:'#1DC74C'
+        });
+        $('#delete-'+id).modal('hide');
+        $('.modal-backdrop').removeClass('show');
+
+        this.init_Data(null,null);
+
+      },error=>{
+        console.log(error);
+      }
+    )
   }
 
 
