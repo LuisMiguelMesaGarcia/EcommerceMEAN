@@ -22,9 +22,12 @@
     "@auth0/angular-jwt": "^5.1.2",
     "@ng-bootstrap/ng-bootstrap": "^15.1.0",
     "@popperjs/core": "^2.11.8",
+    "@tinymce/tinymce-angular": "^7.0.0",
     "jquery": "^3.7.0",
     "ngx-pagination": "^6.0.3",
+    "ngx-tinymce": "^16.0.0",
     "rxjs": "~7.8.0",
+    "tinymce": "^6.6.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

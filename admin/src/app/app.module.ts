@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,10 +33,12 @@ import { CreateProductoComponent } from './components/productos/create-producto/
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
-    // NgbModule
+    NgxPaginationModule,
+    EditorModule
   ],
-  providers: [],
+  providers: [
+    {provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

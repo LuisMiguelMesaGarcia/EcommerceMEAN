@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+declare var JQuery:any;
+declare var $:any;
 declare var iziToast:any;
 
 @Component({
@@ -8,7 +10,14 @@ declare var iziToast:any;
 })
 export class CreateProductoComponent {
 
-  public producto:any = {};
+  editorConfig={
+    base_url:'/tintmce',
+    suffix:'.min',
+    plugins:'lists link image table wordcount'
+  }
+  public producto:any = {
+    
+  };
   public file : File | undefined;
   public imgSelect : any | ArrayBuffer = 'assets/img/01.jpg';
 
@@ -44,12 +53,13 @@ export class CreateProductoComponent {
         if(imagen.type == 'image/png' || imagen.type == 'image/webp' || imagen.type == 'image/jpn' || imagen.type == 'image/jpeg' || imagen.type == 'image/gif'){//validador tipo de imagen
 
           const reader = new FileReader();
-          reader.onload = e =>{
+          reader.onload = e =>{//aqui esperamos el resultado del readAsDataURL
             this.imgSelect = reader.result;
             // console.log(this.imgSelect);
           }
-          reader.readAsDataURL(imagen);
+          reader.readAsDataURL(imagen);//aqui nos da el url en base64
           
+          $('#input-portada').text(imagen.name);//jquery para poner el nombre de la imagen en el input
           this.file=imagen;
 
         }else{//else tipo de iamgen
@@ -59,6 +69,8 @@ export class CreateProductoComponent {
             message: 'el archivo debe ser una imagen',
             titleColor:'rgb(190, 37, 37)'
           })
+
+          $('#input-portada').text("Seleccionar imagen");
           this.imgSelect = 'assets/img/01.jpg'
           this.file=undefined;
         }//fin else imagen
@@ -70,6 +82,7 @@ export class CreateProductoComponent {
           message: 'la imagen no puede superar los 4MB',
           titleColor:'rgb(190, 37, 37)'
         })
+        $('#input-portada').text("Seleccionar imagen");
         this.imgSelect = 'assets/img/01.jpg'
         this.file=undefined;
       }//fin else tamaño
@@ -81,6 +94,7 @@ export class CreateProductoComponent {
         message: 'No hay una imagen de envio',
         titleColor:'rgb(190, 37, 37)'
       })
+      $('#input-portada').text("Seleccionar imagen");
       this.imgSelect = 'assets/img/01.jpg'
       this.file=undefined;
     }//fin else existencia de archivo
