@@ -9,6 +9,7 @@ var mongoose = require('mongoose');//dependencia para conectar la base de datos 
 var port = process.env.port || 4201;//Puerto de ejecucion del backend
 var cliente_route = require('./routes/ClienteRoute') //inicializacmos las rutas de cliente
 var admin_route = require('./routes/AdminRoute') //Admin
+var producto_route = require('./routes/ProductoRoute') //producto
 
 //conexion a la base de datos y revisar si conecta o no
 mongoose.connect('mongodb://127.0.0.1:27017/tienda')//el link de la base de datos tiene que estar en numero si poner localhost no funciona bien.
@@ -35,5 +36,6 @@ app.use((req,res,next)=>{
 
 app.use('/api', cliente_route);//cliente
 app.use('/api', admin_route);//Admin
+app.use('/api', producto_route);//producto
 
 module.exports = app;

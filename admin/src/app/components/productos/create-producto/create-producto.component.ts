@@ -1,4 +1,8 @@
+import { transition } from '@angular/animations';
 import { Component } from '@angular/core';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { AdminService } from 'src/app/services/admin.service';
+import { ProductoService } from 'src/app/services/producto.service';
 declare var JQuery:any;
 declare var $:any;
 declare var iziToast:any;
@@ -9,27 +13,48 @@ declare var iziToast:any;
   styleUrls: ['./create-producto.component.css']
 })
 export class CreateProductoComponent {
-
-  editorConfig={
-    base_url:'/tintmce',
-    suffix:'.min',
-    plugins:'lists link image table wordcount'
-  }
   public producto:any = {
-    
+    contenido:'',
   };
   public file : File | undefined;
   public imgSelect : any | ArrayBuffer = 'assets/img/01.jpg';
 
-  constructor(){}
+  //configuracion del text area especializado
+  config:AngularEditorConfig={
+    editable:true,
+    spellcheck:true,
+    height:'15rem',
+    minHeight:'5rem',
+    placeholder:"Descripcion especifica del producto",
+    translate:'no',
+    defaultParagraphSeparator:'p',
+    defaultFontName:'Arial',
+  };
+  public token:any;
+
+  constructor(private _productoService:ProductoService, private _adminService:AdminService){
+    this.token=_adminService.getToken();
+  }
 
   ngOnInit(){
 
   }
 
+
   registro(registroForm:any){
 
     if(registroForm.valid){
+      // console.log(this.producto);
+      // console.log(this.file);
+      this._productoService.registro_producto_admin(this.producto,this.file,this.token).subscribe(
+        response => {
+          console.log(response);
+        },
+        error=>{
+          console.log(error);
+        }
+      )
+
 
     }else{
       iziToast.show({
@@ -42,7 +67,7 @@ export class CreateProductoComponent {
       
   }
 
-  //cuando hay cambio en el input de la imagen
+  //Recibimos la imagen
   fileChangeEvent(event:any):void{
     var imagen;
     if(event.target.files && event.target.files[0]){//validador existencia de archivo
@@ -60,7 +85,8 @@ export class CreateProductoComponent {
           reader.readAsDataURL(imagen);//aqui nos da el url en base64
           
           $('#input-portada').text(imagen.name);//jquery para poner el nombre de la imagen en el input
-          this.file=imagen;
+          
+          this.file=imagen; ////////IGUALAMOS FILE A MLA IMAGEN QUE OBTENEMOS/////////////////////////////////
 
         }else{//else tipo de iamgen
           iziToast.show({

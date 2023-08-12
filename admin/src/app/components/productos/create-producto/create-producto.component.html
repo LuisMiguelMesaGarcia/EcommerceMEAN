@@ -45,8 +45,8 @@
                           </div>
 
                           <div class="col-lg-12 form-group">
-                            <textarea class="form-control" required rows="15" name="contenido" [(ngModel)]="producto.contenido"></textarea>
-                            <angular-editor [placeholder]="'Enter text here...'"></angular-editor>
+                            <!-- <textarea class="form-control" required rows="15" name="contenido" [(ngModel)]="producto.contenido"></textarea> -->
+                            <angular-editor [placeholder]="'Enter text here...'" [config]="config" name="contenido" [(ngModel)]="producto.contenido"></angular-editor>
                           </div>
 
                         </div>
