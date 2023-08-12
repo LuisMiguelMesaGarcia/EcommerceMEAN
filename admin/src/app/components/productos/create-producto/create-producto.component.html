@@ -42,11 +42,11 @@
                           <div class="col-lg-12 form-group">
                               <label for="">Descripción corta</label>
                               <textarea class="form-control" placeholder="Titulo de producto" name="descripcion" [(ngModel)]="producto.descripcion" required rows="5"></textarea>
-                              <!-- editor de texto -->
                           </div>
 
                           <div class="col-lg-12 form-group">
                             <textarea class="form-control" required rows="15" name="contenido" [(ngModel)]="producto.contenido"></textarea>
+                            <angular-editor [placeholder]="'Enter text here...'"></angular-editor>
                           </div>
 
                         </div>
