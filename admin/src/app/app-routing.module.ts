@@ -7,6 +7,7 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 import { CreateClienteComponent } from './components/cliente/create-cliente/create-cliente.component';
 import { EditClienteComponent } from './components/cliente/edit-cliente/edit-cliente.component';
 import { CreateProductoComponent } from './components/productos/create-producto/create-producto.component';
+import { IndexProductoComponent } from './components/productos/index-producto/index-producto.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path:'clientes/:id', component: EditClienteComponent, canActivate:[AdminGuard]},
 
     {path:'productos/registro', component: CreateProductoComponent, canActivate:[AdminGuard]},
+    {path:'productos', component: IndexProductoComponent, canActivate:[AdminGuard]},
   ]},
   {path:"login", component: LoginComponent}
 ];

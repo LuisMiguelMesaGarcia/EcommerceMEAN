@@ -15,6 +15,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { CreateClienteComponent } from './components/cliente/create-cliente/create-cliente.component';
 import { EditClienteComponent } from './components/cliente/edit-cliente/edit-cliente.component';
 import { CreateProductoComponent } from './components/productos/create-producto/create-producto.component';
+import { IndexProductoComponent } from './components/productos/index-producto/index-producto.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -27,7 +28,8 @@ import { CreateProductoComponent } from './components/productos/create-producto/
     ClienteComponent,
     CreateClienteComponent,
     EditClienteComponent,
-    CreateProductoComponent
+    CreateProductoComponent,
+    IndexProductoComponent
   ],
   imports: [
     BrowserModule,

@@ -27,4 +27,9 @@ export class ProductoService {
 
     return  this.http.post(this.url+'registro_producto_admin',fd,{headers: headers});
   }
+
+  listar_productos_admin(filtro:any, token:string):Observable<any>{
+    let headers = new HttpHeaders({'Authorization' : token}) //este authorization se accede en minusculas en el backend
+    return  this.http.get(this.url+'listar_productos_admin/'+filtro , {headers: headers});
+  }
 }

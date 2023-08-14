@@ -13,7 +13,8 @@ var multiparty = require('connect-multiparty');
 var path = multiparty({uploadDir:'./uploads/productos'});//esto hace que los datos adjuntos como archivos no se manejen en el req.body sino en su propia ubicacion el mismo multiparty los extraera
 
 //ruta del post en la cual tiene la parte del url y el metodo al cual esta llamando
-api.post('/registro_producto_admin',[auth.auth, path],productoController.registro_producto_admin);
+api.post('/registro_producto_admin',[auth.auth, path],productoController.registro_producto_admin);//se pasa un path porque se esta pasando un archivo por medio del multiparty
+api.get('/listar_productos_admin/:filtro?',auth.auth,productoController.listar_productos_admin);
 
 //exportamos el router
 module.exports=api;
