@@ -5,7 +5,6 @@ var schema = mongoose.Schema; //importamos los schemas de mongoose esto sirve pa
 
 //creamos el modelo de cliente
 var productoSchema = schema({
-    //en cada atributo de la db vamos a especificar el tipo de dato que es con  type: tipo de dato y si es null or not null con el required:true or false en el perfil se le da una imagen por defecto con default:'perfil.png'
     titulo: {type: String, required:true},
     slug: {type: String, required:true},
     galeria: [{type: Object, required: false},],

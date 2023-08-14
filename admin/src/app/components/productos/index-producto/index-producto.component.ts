@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GLOBAL } from 'src/app/services/GLOBAL';
 import { AdminService } from 'src/app/services/admin.service';
 import { ProductoService } from 'src/app/services/producto.service';
 
@@ -12,15 +13,16 @@ export class IndexProductoComponent {
   public filtro = '';
   public token:any;
   public productos : Array<any> = [];
+  public url : string;
 
   constructor(private _productoService:ProductoService){
     this.token= localStorage.getItem('token');
+    this.url=GLOBAL.url;
   }
 
   ngOnInit():void{
     this._productoService.listar_productos_admin(this.filtro,this.token).subscribe({
       next: (response)=>{
-        console.log(response)
         this.productos=response.data;
         this.load_data=false;
       },

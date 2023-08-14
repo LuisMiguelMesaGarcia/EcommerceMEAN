@@ -69,7 +69,12 @@
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary mr-3">Crear producto</button>
+                <button *ngIf="load_btn" class="btn btn-secondary mr-3" type="submit" disabled>
+                  <span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>
+                  creando...
+                </button>
                 <a class="btn btn-warning">Regresar</a>
+                
             </div>
         </div>    
-    </form> 
+      </form> 

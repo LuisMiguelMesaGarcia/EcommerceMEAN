@@ -1,5 +1,6 @@
 import { transition } from '@angular/animations';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AdminService } from 'src/app/services/admin.service';
 import { ProductoService } from 'src/app/services/producto.service';
@@ -13,12 +14,13 @@ declare var iziToast:any;
   styleUrls: ['./create-producto.component.css']
 })
 export class CreateProductoComponent {
+
+  //variables////////////////////////////////////////////////////////
   public producto:any = {
     contenido:'',
   };
   public file : File | undefined;
   public imgSelect : any | ArrayBuffer = 'assets/img/01.jpg';
-
   //configuracion del text area especializado
   config:AngularEditorConfig={
     editable:true,
@@ -31,31 +33,35 @@ export class CreateProductoComponent {
     defaultFontName:'Arial',
   };
   public token:any;
+  public load_btn:boolean=false;//precargador
 
-  constructor(private _productoService:ProductoService, private _adminService:AdminService){
-    this.token=_adminService.getToken();
+  //constructor/////////////////////////////////////////////////////////
+  constructor(private _productoService:ProductoService, private _adminService:AdminService,private _router: Router){
+    this.token = _adminService.getToken();
   }
 
   ngOnInit(){
-
   }
 
 
   registro(registroForm:any){
 
     if(registroForm.valid){
-      // console.log(this.producto);
-      // console.log(this.file);
-      this._productoService.registro_producto_admin(this.producto,this.file,this.token).subscribe(
-        response => {
-          console.log(response);
+      this.load_btn = true;
+      this._productoService.registro_producto_admin(this.producto,this.file,this.token).subscribe({
+        next: (response) => {
+            iziToast.show({
+              title: 'Success',
+              position:'topRight',
+              message: 'Se registró correctamente el nuevo producto',
+              titleColor:'#1DC74C'
+            });
+            this._router.navigate(['/panel/productos']);
         },
-        error=>{
+        error: (error) =>{
           console.log(error);
         }
-      )
-
-
+      })
     }else{
       iziToast.show({
         title: 'Error',
@@ -64,6 +70,7 @@ export class CreateProductoComponent {
         titleColor:'rgb(190, 37, 37)'
       })
     }
+    this.load_btn=false;
       
   }
 
@@ -125,7 +132,6 @@ export class CreateProductoComponent {
       this.file=undefined;
     }//fin else existencia de archivo
     
-    console.log(this.file);
   }
 
 }

@@ -67,7 +67,12 @@
                           <ng-container *ngIf="!load_data">
                             <tbody  *ngFor="let item of productos">
                                 <tr>
-                                    <td>{{item.titulo}}</td>
+                                    <td>
+                                      <h6 style="padding-bottom: 0; margin-bottom: 0;">
+                                        <img style="width:50px" [src]="url+'obtener_portada/'+item.portada" class="img-thumbnail rounded-0" alt="">
+                                        {{item.titulo}}
+                                      </h6>
+                                    </td>
                                     <td>{{item.stock}}</td>
                                     <td>{{item.precio}}</td>
                                     <td>{{item.categoria}}</td>
@@ -78,9 +83,8 @@
                                                 OPCIONES
                                             </button>
                                             <div class="dropdown-menu">
-                                              <a class="dropdown-item" [routerLink]="['/panel/clientes',item._id]">Editar Cliente</a>
+                                              <a class="dropdown-item" [routerLink]="['/panel/productos',item._id]">Editar Cliente</a>
                                             </div>
-        
                                         </div>
                                         <!-- <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display:none" aria-hidden="true">
                                           <div class="modal-dialog modal-dialog-centered" role="document">
