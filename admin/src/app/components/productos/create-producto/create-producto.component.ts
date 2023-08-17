@@ -34,6 +34,7 @@ export class CreateProductoComponent {
   };
   public token:any;
   public load_btn:boolean=false;//precargador
+  
 
   //constructor/////////////////////////////////////////////////////////
   constructor(private _productoService:ProductoService, private _adminService:AdminService,private _router: Router){
@@ -45,10 +46,17 @@ export class CreateProductoComponent {
 
 
   registro(registroForm:any){
-
     if(registroForm.valid){
-      this.load_btn = true;
-      this._productoService.registro_producto_admin(this.producto,this.file,this.token).subscribe({
+      if(this.file==undefined){
+        iziToast.show({
+          title: 'Error',
+          position:'topRight',
+          message: 'debes subir una portada para registrarte',
+          titleColor:'rgb(190, 37, 37)'
+        })
+      }else{
+        this.load_btn = true;
+        this._productoService.registro_producto_admin(this.producto,this.file,this.token).subscribe({
         next: (response) => {
             iziToast.show({
               title: 'Success',
@@ -62,6 +70,7 @@ export class CreateProductoComponent {
           console.log(error);
         }
       })
+      }
     }else{
       iziToast.show({
         title: 'Error',

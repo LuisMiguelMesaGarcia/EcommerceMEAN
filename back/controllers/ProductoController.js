@@ -56,8 +56,34 @@ const obtener_portada = async function(req,res){
     })
 }
 
+//GET producto by id
+const obtener_producto_admin=async function(req,res){
+    if(req.user){ //auth
+        if(req.user.rol == 'admin'){ //solo da permiso a Admin
+
+            var id=req.params['id'];
+
+            try {
+                //validacion de que existe el registro el trycatch
+                var reg = await Producto.findById({_id:id});//esto encuentra con formato de objeto
+            
+                res.status(200).send({data:reg});
+            } catch (error) {
+                console.log(error)
+                res.status(200).send({data:undefined})
+            }
+
+        }else{
+            res.status(500).send({message:'NoAccess'})
+        }
+    }else{
+        res.status(500).send({message:'NoAccess'})
+    }
+}
+
 module.exports={
     registro_producto_admin,
     listar_productos_admin,
-    obtener_portada
+    obtener_portada,
+    obtener_producto_admin
 }

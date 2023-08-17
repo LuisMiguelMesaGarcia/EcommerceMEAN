@@ -15,7 +15,7 @@ export class ClienteComponent {
   public clientes: Array<any> = []; //todos los clientes
   public filtro_apellido = '';// con el ngModule le damos valor a estos filtros en el html
   public filtro_correo = '';
-  public page!:number;//para el paginadore
+  public page!:number;//para el paginador
   public token:any;
   public load_data:boolean=true;//precargador
   // public page = 1;

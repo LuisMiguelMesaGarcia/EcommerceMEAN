@@ -16,6 +16,7 @@ import { CreateClienteComponent } from './components/cliente/create-cliente/crea
 import { EditClienteComponent } from './components/cliente/edit-cliente/edit-cliente.component';
 import { CreateProductoComponent } from './components/productos/create-producto/create-producto.component';
 import { IndexProductoComponent } from './components/productos/index-producto/index-producto.component';
+import { UpdateProductoComponent } from './components/productos/update-producto/update-producto.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -29,7 +30,8 @@ import { IndexProductoComponent } from './components/productos/index-producto/in
     CreateClienteComponent,
     EditClienteComponent,
     CreateProductoComponent,
-    IndexProductoComponent
+    IndexProductoComponent,
+    UpdateProductoComponent
   ],
   imports: [
     BrowserModule,

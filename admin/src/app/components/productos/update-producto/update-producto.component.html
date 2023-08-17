@@ -3,15 +3,15 @@
     <div class="border-bottom pt-5 mt-2 mb-5">
     <h1 class="mt-2 mt-md-4 mb-3 pt-5">Productos</h1>
     <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
-        <p class="text-muted">Este módulo lista todos los productos de la tienda.</p>
+        <p class="text-muted">Este módulo actualiza el producto seleccionado.</p>
         
     </div>
     </div>
 
-    <form #registroForm="ngForm" (ngSubmit)="registro(registroForm)">
+    <form #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)">
         <div class="card box-shadow-sm">
             <div class="card-header">
-                <h5 style="margin-bottom: 0px;">Registro de producto</h5>
+                <h5 style="margin-bottom: 0px;">Actualizar producto</h5>
             </div>
             <div class="card-body">
                   <div class="row">
@@ -45,7 +45,7 @@
                           </div>
 
                           <div class="col-lg-12 form-group">
-                            <!-- <textarea class="form-control" required rows="15" name="contenido" [(ngModel)]="producto.contenido"></textarea> -->
+                            <!-- text area avanzado -->
                             <angular-editor [placeholder]="'Enter text here...'" [config]="config" name="contenido" [(ngModel)]="producto.contenido"></angular-editor>
                           </div>
 
@@ -53,7 +53,8 @@
                     </div>
                     <div class="col-lg-4">
                       <div class="row">
-                        <div class="col-lg-12 form-group">	
+                        <div class="col-lg-12 form-group">
+                            <!-- input imagen -->
                             <label for="">Portada</label>
                             <div class="custom-file">
                               <input class="custom-file-input" type="file" id="file-input" (change)="fileChangeEvent($event)">
@@ -68,10 +69,10 @@
                   </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary mr-3">Crear producto</button>
+                <button type="submit" class="btn btn-primary mr-3">Actualizar producto</button>
                 <button *ngIf="load_btn" class="btn btn-secondary mr-3" type="submit" disabled>
                   <span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>
-                  creando...
+                  Actualizando...
                 </button>
                 <a class="btn btn-warning" [routerLink]="['/panel/productos']">Regresar</a>
                 

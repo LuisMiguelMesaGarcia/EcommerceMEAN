@@ -17,26 +17,13 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Titulo del producto">
+                                <input class="form-control" type="text" placeholder="Titulo del producto" name="filtro" [(ngModel)]="filtro">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">Filtrar</button>
+                                    <button class="btn btn-primary" (click)="filtrar()" type="button">Filtrar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <form class="form-inline pt-2">
-                        <label class="sr-only" for="inline-form-input-name">Apellidos</label>
-                        <input class="form-control mb-3 mr-sm-4" name = "filtro_apellido"  [(ngModel)]="filtro_apellido" type="text" id="inline-form-input-name" placeholder="Apellidos" (keyup)="filtro('apellido')">
-                        <label class="sr-only" for="inline-form-input-username">Correo</label>
-                        <div class="input-group mb-3 mr-sm-4">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">@</div>
-                        </div>
-                        <input class="form-control" type="text" id="inline-form-input-username" placeholder="Correo" name = "filtro_correo"  [(ngModel)]="filtro_correo" (keyup)="filtro('correo')">
-                        </div>
-                    
-                        <button class="btn btn-primary mb-3" type="submit">Buscar cliente</button>
-                    </form> -->
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -65,7 +52,8 @@
                           <!-- tabla dinamica -->
                           <!-- el clientes viene del ts -->
                           <ng-container *ngIf="!load_data">
-                            <tbody  *ngFor="let item of productos">
+                            <!-- Paginador -->
+                            <tbody  *ngFor="let item of productos | paginate:{itemsPerPage: 10, currentPage: page}">
                                 <tr>
                                     <td>
                                       <h6 style="padding-bottom: 0; margin-bottom: 0;">
@@ -78,6 +66,7 @@
                                     <td>{{item.categoria}}</td>
                                     <td>{{item.nventas}}</td>
                                     <td>
+                                      <!-- Dropdown -->
                                         <div class="btn-group dropdown d-inside-block mb-3 mr-2" role="group">
                                             <button id="dropdownId" type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 OPCIONES
@@ -113,6 +102,6 @@
                 <div class="card-footer">
                   <!-- paginador y su documentación -->
                   <!-- https://github.com/michaelbromley/ngx-pagination/blob/master/README.md -->
-                  <!-- <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls> -->
+                  <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
                 </div>
           </div>  

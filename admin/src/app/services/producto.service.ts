@@ -32,4 +32,10 @@ export class ProductoService {
     let headers = new HttpHeaders({'Authorization' : token}) //este authorization se accede en minusculas en el backend
     return  this.http.get(this.url+'listar_productos_admin/'+filtro , {headers: headers});
   }
+
+  obtener_producto_admin(id:any, token:string):Observable<any>{
+    let headers = new HttpHeaders({'Authorization' : token}) //este authorization se accede en minusculas en el backend
+    return  this.http.get(this.url+'obtener_producto_admin/'+id , {headers: headers});
+  }
+
 }
