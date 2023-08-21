@@ -27,8 +27,8 @@
                     </ng-container>
 
                     <ng-container *ngIf="!load_data">
+                        <!-- validacion de que el cliente exista -->
                         <div class="card-body" *ngIf="cliente != undefined">
-                        
                             <div class="row">
                                 <div class="col-md-4 form-group">
                                     <label for="validationCustom01" class="form-label">Nombres</label>
@@ -68,7 +68,7 @@
                             
                         </div>
     
-                        <!-- validacion de encontrar el registro -->
+                        <!-- validacion de no encontrar registro -->
                         <div class="card-body" *ngIf="cliente == undefined">
                             <h3 class="text-center">No se encontró el registro</h3>
                             <div class="row ">

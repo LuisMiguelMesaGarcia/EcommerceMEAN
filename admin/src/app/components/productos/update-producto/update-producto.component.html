@@ -1,14 +1,15 @@
 <app-sidebar></app-sidebar>
     <!-- Page title-->
     <div class="border-bottom pt-5 mt-2 mb-5">
-    <h1 class="mt-2 mt-md-4 mb-3 pt-5">Productos</h1>
-    <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
-        <p class="text-muted">Este módulo actualiza el producto seleccionado.</p>
-        
+      <h1 class="mt-2 mt-md-4 mb-3 pt-5">Productos</h1>
+      <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
+          <p class="text-muted">Este módulo actualiza el producto seleccionado.</p>
+          
+      </div>
     </div>
-    </div>
-
-    <form #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)">
+    <!-- validacion si hay productos(muestra todo el formulario) -->
+    <ng-container *ngIf="producto">
+      <form #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)">
         <div class="card box-shadow-sm">
             <div class="card-header">
                 <h5 style="margin-bottom: 0px;">Actualizar producto</h5>
@@ -79,3 +80,19 @@
             </div>
         </div>    
       </form> 
+    </ng-container>
+    <!-- validacion si no hay productos -->
+    <ng-container *ngIf="producto==undefined">
+      <div class="card">
+        <div class="card-body">
+        <h3 class="text-center">No se encontró el registro</h3>
+        <div class="row ">
+          <div class="col-3 mx-auto">
+              <img src="assets/img/error.png" alt="" style="width:100%;">
+          </div>
+        </div>
+        </div>
+      </div>
+    </ng-container>
+
+    
